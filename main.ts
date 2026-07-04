@@ -19,6 +19,9 @@ input.onButtonPressed(Button.AB, function () {
         roundPoints = 10 + attemptsLeft * 2 + streak * 3
         score += roundPoints
         streak += 1
+        music.playTone(659, 70)
+        music.playTone(784, 70)
+        music.playTone(988, 110)
         basic.showIcon(IconNames.Yes)
         basic.pause(180)
         basic.showLeds(`
@@ -54,7 +57,26 @@ input.onButtonPressed(Button.AB, function () {
         basic.pause(420)
         if (!(rangeUnlocked) && score >= 80) {
             rangeUnlocked = true
+            music.playTone(523, 90)
+            music.playTone(659, 90)
+            music.playTone(784, 90)
+            music.playTone(1047, 160)
             basic.showString("LVL2")
+            basic.showLeds(`
+                # # # # .
+                # # . # .
+                # # # # .
+                # . . # .
+                # # # # .
+                `)
+            basic.pause(180)
+            basic.showLeds(`
+                # # # # .
+                # # . # .
+                # # . # .
+                # # . # .
+                # # # # .
+                `)
             basic.pause(180)
             basic.showString("0-19")
         }
@@ -90,7 +112,12 @@ input.onButtonPressed(Button.AB, function () {
     } else {
         attemptsLeft += -1
         if (attemptsLeft <= 0) {
+            music.playTone(330, 120)
+            music.playTone(220, 120)
+            music.playTone(165, 180)
+            score = 0
             streak = 0
+            rangeUnlocked = false
             basic.showIcon(IconNames.Sad)
             basic.pause(450)
             basic.showString("ANS")
@@ -114,17 +141,29 @@ input.onButtonPressed(Button.AB, function () {
             basic.pause(120)
             basic.clearScreen()
             basic.pause(90)
-            if (rangeUnlocked) {
-                maxGuess = 19
-                guess = 10
-            } else {
-                maxGuess = 9
-                guess = 5
-            }
+            basic.showString("NEW")
+            basic.clearScreen()
+            led.plot(2, 0)
+            music.playTone(262, 60)
+            basic.pause(50)
+            led.plot(2, 1)
+            music.playTone(330, 60)
+            basic.pause(50)
+            led.plot(2, 2)
+            music.playTone(392, 60)
+            basic.pause(50)
+            led.plot(2, 3)
+            music.playTone(523, 80)
+            basic.pause(50)
+            led.plot(2, 4)
+            basic.pause(140)
+            maxGuess = 9
+            guess = 5
             target = randint(0, maxGuess)
             attemptsLeft = 4
             drawGuess()
         } else {
+            music.playTone(262, 80)
             if (guess < target) {
                 basic.showArrow(ArrowNames.North)
             } else {
@@ -172,10 +211,10 @@ function drawGuess () {
     } else if (guess == 1) {
         basic.showLeds(`
             . . # . .
-            . # # . .
             . . # . .
             . . # . .
-            . # # # .
+            . . # . .
+            . . # . .
             `)
     } else if (guess == 2) {
         basic.showLeds(`
@@ -221,9 +260,9 @@ function drawGuess () {
         basic.showLeds(`
             . # # # .
             . . . # .
-            . . # . .
-            . . # . .
-            . . # . .
+            . . . # .
+            . . . # .
+            . . . # .
             `)
     } else if (guess == 8) {
         basic.showLeds(`
@@ -251,11 +290,11 @@ function drawGuess () {
             `)
     } else if (guess == 11) {
         basic.showLeds(`
-            # . . # .
-            # . # # .
-            # . . # .
-            # . . # .
-            # . # # #
+            . # . # .
+            . # . # .
+            . # . # .
+            . # . # .
+            . # . # .
             `)
     } else if (guess == 12) {
         basic.showLeds(`
@@ -301,9 +340,9 @@ function drawGuess () {
         basic.showLeds(`
             # . # # #
             # . . . #
-            # . . # .
-            # . . # .
-            # . . # .
+            # . . . #
+            # . . . #
+            # . . . #
             `)
     } else if (guess == 18) {
         basic.showLeds(`
