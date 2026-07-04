@@ -55,21 +55,6 @@ input.onButtonPressed(Button.AB, function () {
         if (!(rangeUnlocked) && score >= 80) {
             rangeUnlocked = true
             basic.showString("LVL2")
-            basic.showLeds(`
-                # # # # .
-                # # . # .
-                # # # # .
-                # . . # .
-                # # # # .
-                `)
-            basic.pause(180)
-            basic.showLeds(`
-                # # # # .
-                # # . # .
-                # # . # .
-                # # . # .
-                # # # # .
-                `)
             basic.pause(180)
             basic.showString("0-19")
         }
