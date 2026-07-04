@@ -62,21 +62,6 @@ input.onButtonPressed(Button.AB, function () {
             music.playTone(784, 90)
             music.playTone(1047, 160)
             basic.showString("LVL2")
-            basic.showLeds(`
-                # # # # .
-                # # . # .
-                # # # # .
-                # . . # .
-                # # # # .
-                `)
-            basic.pause(180)
-            basic.showLeds(`
-                # # # # .
-                # # . # .
-                # # . # .
-                # # . # .
-                # # # # .
-                `)
             basic.pause(180)
             basic.showString("0-19")
         }
